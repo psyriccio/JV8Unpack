@@ -5,6 +5,9 @@
  */
 package ru.spb.awk.jv8unpack;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  *
  * @author Василий Казьмин
@@ -56,7 +59,11 @@ public class Main {
         if ("-inflate".equals(cur_mode) || "-i".equals(cur_mode) || "-und".equals(cur_mode) || "-undeflate".equals(cur_mode)) {
 
             
-            JV8File.Inflate(argv[2], argv[3]);
+            try {
+				JV8File.Inflate(argv[2], argv[3]);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
             return;
         }
 
@@ -84,7 +91,11 @@ public class Main {
         if ("-parse".equals(cur_mode) || "-p".equals(cur_mode)) {
 
             
-            JV8File.Parse(argv[2], argv[3]);
+            try {
+				JV8File.Parse(argv[2], argv[3]);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
             return;
         }
 

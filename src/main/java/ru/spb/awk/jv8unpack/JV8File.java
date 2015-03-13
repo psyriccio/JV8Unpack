@@ -46,7 +46,7 @@ class JV8File {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    static void Parse(String in_filename, String out_filename) throws FileNotFoundException {
+    static void Parse(String in_filename, String out_filename) throws IOException {
         InputStream file_in = new FileInputStream(in_filename);
 
         long FileDataSize = new File(in_filename).length();
@@ -126,15 +126,15 @@ class JV8File {
         BlockHeader blockHeader = new BlockHeader();
         blockHeader.init(file);
 
-        UINT ElemsAddrsSize;
-        stElemAddr *pElemsAddrs = NULL;
-        ReadBlockData(file, pBlockHeader, (char*&)pElemsAddrs, &ElemsAddrsSize);
+        long ElemsAddrsSize;
+        ElemAddr elemsAddrs = null;
+        ReadBlockData(file, blockHeader, elemsAddrs, ElemsAddrsSize);
 
-        unsigned int ElemsNum = ElemsAddrsSize / stElemAddr::Size();
+        long ElemsNum = ElemsAddrsSize / ElemAddr.size();
 
         Elems.clear();
 
-        for (UINT i = 0; i < ElemsNum; i++) {
+        for (long i = 0; i < ElemsNum; i++) {
 
             if (pElemsAddrs[i].fffffff != V8_FF_SIGNATURE) {
                 ElemsNum = i;
