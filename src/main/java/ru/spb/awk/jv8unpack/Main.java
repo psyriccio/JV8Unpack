@@ -7,6 +7,7 @@ package ru.spb.awk.jv8unpack;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Main {
         System.out.println(V8P_VERSION);
     }
 
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws DataFormatException {
 
 	String cur_mode="";
         int argc = argv.length;
