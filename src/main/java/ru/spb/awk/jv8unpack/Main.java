@@ -46,8 +46,8 @@ public class Main {
 
 	String cur_mode="";
         int argc = argv.length;
-        if (argc > 1) {
-            cur_mode = argv[1].toLowerCase();
+        if (argc > 0) {
+            cur_mode = argv[0].toLowerCase();
         }
 
 
@@ -61,7 +61,7 @@ public class Main {
 
             
             try {
-				JV8File.Inflate(argv[2], argv[3]);
+				JV8File.Inflate(argv[1], argv[2]);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -71,21 +71,21 @@ public class Main {
         if ("-deflate".equals(cur_mode) || "-d".equals(cur_mode)) {
 
             
-            JV8File.Deflate(argv[2], argv[3]);
+            JV8File.Deflate(argv[1], argv[2]);
             return;
         }
 
         if ("-unpack".equals(cur_mode) || "-u".equals(cur_mode) || "-unp".equals(cur_mode)) {
 
             
-            JV8File.UnpackToFolder(argv[2], argv[3], argv[4], true);
+            JV8File.UnpackToFolder(argv[1], argv[2], argv[3], true);
             return;
         }
 
         if ("-pack".equals(cur_mode) || "-pa".equals(cur_mode)) {
 
             
-            JV8File.PackFromFolder(argv[2], argv[3]);
+            JV8File.PackFromFolder(argv[1], argv[2]);
             return;
         }
 
@@ -93,7 +93,7 @@ public class Main {
 
             
             try {
-				JV8File.Parse(argv[2], argv[3]);
+				JV8File.Parse(argv[1], argv[2]);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -104,7 +104,7 @@ public class Main {
 
             
 
-            int ret = JV8File.BuildCfFile(argv[2], argv[3]);
+            int ret = JV8File.BuildCfFile(argv[1], argv[2]);
             if (ret == SHOW_USAGE) {
                 usage();
             }
