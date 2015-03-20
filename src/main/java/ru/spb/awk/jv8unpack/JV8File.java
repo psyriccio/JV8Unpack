@@ -73,10 +73,6 @@ class JV8File {
 	private static void parse(File out_dir, AttributeDocument child)
 			throws DataFormatException, IOException, FileNotFoundException,
 			UnsupportedEncodingException {
-		if(!out_dir.exists()) {
-			out_dir.mkdir();
-		}
-		out_dir.setWritable(true);
 		Document doc = child.getContent();
 		if(doc instanceof ContentDocument) {
 			ContentDocument contDoc = (ContentDocument) doc;
@@ -85,10 +81,9 @@ class JV8File {
 				parse(out, child);
 			}
 		} else if (doc instanceof TextDocument ) {
-			new File(out_dir + File.separator + child.getName()).createNewFile();
-			OutputStream os = new FileOutputStream(out_dir + File.separator + child.getName());
 			TextDocument contDoc = (TextDocument) doc;
-			os.write(contDoc .getText().getBytes("utf-8"));
+			OutputStream os = new FileOutputStream(new File(out_dir, child.getName()));
+			os.write(contDoc.getText().getBytes("utf-8"));
 			os.close();
 		} else if (doc instanceof PropertyDocument ) {
 			TextDocument contDoc = (TextDocument) doc;

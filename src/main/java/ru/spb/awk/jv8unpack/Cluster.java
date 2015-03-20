@@ -164,12 +164,10 @@ public class Cluster implements Closeable {
 
 	private void readContent(RandomAccessFile dataInput) throws IOException,
 			DataFormatException {
-		String nl = dataInput.readLine(); 
-		if(nl==null || !nl.isEmpty()) {
+		if(!dataInput.readLine().isEmpty()) {
 			throw new DataFormatException();
 		}
-		nl = dataInput.readLine();
-		String[] buf = nl.split(" ");
+		String[] buf = dataInput.readLine().split(" ");
 		if(buf.length != 3) {
 			throw new DataFormatException();
 		}
