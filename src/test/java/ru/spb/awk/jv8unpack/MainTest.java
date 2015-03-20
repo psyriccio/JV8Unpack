@@ -2,6 +2,7 @@ package ru.spb.awk.jv8unpack;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.zip.DataFormatException;
 
 import org.junit.After;
@@ -29,10 +30,14 @@ public class MainTest {
 	}
 
 	@Test
-	public final void testMain() throws DataFormatException {
-		String[] argv = {"-P","src/test/resources/Обмен.epf","c:/Обмен_epf"};
-		
-		Main.main(argv);
+	public final void testMain()  {
+		String[] argv = {"-u","src/test/resources/Обмен.epf","src/test/resources/Обмен_epf"};
+		try {
+			Main.main(argv);
+		} catch (DataFormatException | IOException e) {
+			e.printStackTrace();
+			throw new Error(e);
+		}
 	}
 
 }

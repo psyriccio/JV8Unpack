@@ -42,7 +42,7 @@ public class Main {
         System.out.println(V8P_VERSION);
     }
 
-    public static void main(String[] argv) throws DataFormatException {
+    public static void main(String[] argv) throws DataFormatException, IOException {
 
 	String cur_mode="";
         int argc = argv.length;
@@ -78,7 +78,7 @@ public class Main {
         if ("-unpack".equals(cur_mode) || "-u".equals(cur_mode) || "-unp".equals(cur_mode)) {
 
             
-            JV8File.UnpackToFolder(argv[1], argv[2], argv[3], true);
+            JV8File.UnpackToFolder(argv[1], argv[2]);
             return;
         }
 
